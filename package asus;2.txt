@@ -1,0 +1,52 @@
+package asus;
+import java.util.Scanner;
+
+public class OnlineExaminationSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Assume we have a database of user profiles (for demonstration purposes)
+        String username = "praveen"; // Example username
+        String password = "password"; // Example password
+
+        // Login functionality
+        System.out.println("Welcome to the Online Examination System!");
+        System.out.print("Enter your username: ");
+        String enteredUsername = scanner.nextLine();
+        System.out.print("Enter your password: ");
+        String enteredPassword = scanner.nextLine();
+
+        if (enteredUsername.equals(username) && enteredPassword.equals(password)) {
+            System.out.println("Login successful!");
+            // Proceed to other functionalities (profile update, MCQs, timer, etc.)
+        } else {
+            System.out.println("Invalid credentials. Please try again.");
+            return; // Exit the program
+        }
+
+        // Profile update functionality
+        System.out.println("\nProfile Update:");
+        System.out.print("Enter your new name: ");
+        String newName = scanner.nextLine();
+        System.out.print("Enter your new password: ");
+        String newPassword = scanner.nextLine();
+        // Update the user profile in the database
+
+        // MCQ selection functionality (for demonstration purposes)
+        System.out.println("\nMCQs:");
+        System.out.println("1. What is the capital of France?");
+        System.out.println("   a) Paris");
+        System.out.println("   b) London");
+        System.out.println("   c) Berlin");
+        System.out.print("Your answer (a/b/c): ");
+        String mcqAnswer = scanner.nextLine();
+        // Check the answer and provide feedback
+
+        // Timer and auto-submit (for demonstration purposes)
+        System.out.println("\nTimer: You have 30 minutes remaining.");
+        // Implement timer logic
+
+        // Closing session and logout
+        System.out.println("\nSession closed. Thank you for using the Online Examination System!");
+    }
+}

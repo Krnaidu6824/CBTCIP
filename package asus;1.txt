@@ -1,0 +1,39 @@
+package asus;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class GuessTheNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        // Generate a random number between 1 and 100
+        int minNumber = 1;
+        int maxNumber = 100;
+        int targetNumber = random.nextInt(maxNumber - minNumber + 1) + minNumber;
+
+        int attempts = 0;
+        boolean guessedCorrectly = false;
+
+        System.out.println("Welcome to Guess the Number!");
+        System.out.println("I've picked a number between " + minNumber + " and " + maxNumber + ". Can you guess it?");
+
+        while (!guessedCorrectly) {
+            System.out.print("Enter your guess: ");
+            int userGuess = scanner.nextInt();
+            attempts++;
+
+            if (userGuess == targetNumber) {
+                guessedCorrectly = true;
+                System.out.println("Congratulations! You guessed it right in " + attempts + " attempts.");
+            } else if (userGuess < targetNumber) {
+                System.out.println("Try a higher number.");
+            } else {
+                System.out.println("Try a lower number.");
+            }
+        }
+
+        scanner.close();
+    }
+}
