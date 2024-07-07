@@ -1,0 +1,502 @@
+package Rugvedha;
+
+import java.util.Scanner;
+ public class Project
+ {
+   Scanner sc= new Scanner(System.in);
+    int a;
+    int b;
+    int quantity;
+    static int tprice;
+    static int r=0;
+    static int n=0;
+    static int k=0;
+    static int krn =0;
+    String name;
+    String address;
+    String num;
+    static int price[]= new int[15];
+    int arr1[] = new int [15];
+    static int code1[] = new int [15];
+    static int quant[] = new int [15];
+    static int tpofitems[] = new int [15];
+    
+    public  void discount()
+    {
+    	 for(int i=0;tpofitems[i] !=0;++i)
+    	 {
+    		tprice = tprice+ tpofitems[i];
+    	 }
+    	 int d = (5*tprice)/100;
+  	     int fb = tprice-d;
+    	if(tprice>=1000)
+    	{ 
+    	   System.out.println("Total bill of purchased items is "+tprice);
+    	   System.out.println("Hey "+name+" Congrats..! you received a discount of : "+d+".rs");
+    	   System.out.println();
+    	   System.out.println("     ***************************************");
+    	   System.out.println("          your final bill : "+fb+".rs");
+    	   System.out.println("     ***************************************");
+    	}
+    	if (tprice<1000)
+    	{
+    		System.out.println("sorry "+name+" you are not received any discount");
+    		System.out.println("if your shopping bill is more than Rs.1000 then you can receive discount");
+    		System.out.println();
+    		System.out.println("     ***************************************");
+    		System.out.println("          your final bill : "+tprice+".rs");
+    		System.out.println("     ***************************************");
+    	}
+    }
+         int quantity1(int a)
+         {
+        	 
+        	 return quant[a];
+         }
+       void customerdetails()
+       {
+    	   System.out.println("Customer Details");
+    	   System.out.println("----------------");
+    	   System.out.println("Customer Name : "+name);
+    	   System.out.println("Customer Addr : "+address);
+    	   System.out.println("Phone number  : "+num);
+       }
+     void meth1()
+     {
+    	 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    	 System.out.print("If you want to see list of items please enter 1 :");
+    	   int e = sc.nextInt();
+    	 switch(e)
+    	 {
+    	 case 1 :  this.meth2();
+    	           return;
+    	   
+    	 default: 
+    		   System.out.println();
+    		   System.out.println("   you have entered invalid Option");
+    		   System.out.println();
+    		   this.meth1();  
+    		   break;
+    	 }
+    	 
+     }	 
+     void meth2() 
+    {
+    	 this.items();
+    	 System.out.print("Please choose your option :");
+    	  this.a= sc.nextInt();
+    	  if(a==5)
+     	 {
+    		  System.out.println("    you are Succeessfully exited");
+     		 return;
+     	 }
+    	  
+    	 System.out.print("Are you sure!!,If yes type 1, no type 2 :");
+    	 int b= sc.nextInt();
+    	 if(b==1) 
+    	 {
+    		 this.option(a);
+    	 }
+    	 else if(b==2)
+    	 {  
+    		 switch(a)
+    		 {
+    		 case 2:
+    			    this.meth1();
+    		 }
+    		 return;
+    	 }
+    	 else
+    	 {
+    		 System.out.println();
+    		 System.out.println("you have entered invalid option");
+    		 System.out.println("Choose the correct option");
+    		 this.meth2();
+    	 }
+    	 this.productcode();
+    	 quant[krn]=sc.nextInt();
+    	 this.meth3();
+    }
+     
+        void meth3()
+        {
+    	 System.out.println("Press 1 for continue Shopping");
+    	 System.out.println("Press 2 for stop here and get the bill");
+    	 System.out.println("Press 3 for Exit");
+    	 int k = sc.nextInt();
+    	 if(k==1)
+    	 {
+    		 ++krn;
+    		 new Project().meth2();
+    		 
+    	 }
+    	 else if(k==2)
+    	 {
+    		 this.details();
+    	
+    		 this.bill();
+    
+    		 this.bill(" Rugvedha ");
+    		
+    		 System.out.println("--------------------------------------------------------------------");
+        	 this.discount();
+        	 System.out.println();
+        	 this.customerdetails();
+        	 System.out.println("---------------------------------------------------");
+    	 }
+    	 else if(k==3) 
+    	 {
+    		 return;
+    	 }
+    	
+     }
+      /*  void exit()
+        {
+       	System.out.println("------------Thank you for Shopping-----------");
+    		System.out.println("****************Visit again******************");
+        }*/
+     void bill()
+     {
+    	 System.out.println("--------------------------------------------------------------------");
+    	 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~Bill~~~~~~~Bill~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    	 System.out.println("--------------------------------------------------------------------");
+    	 System.out.println(" SNO  Productcode   Productname    Price    Quantity   Total price");
+    	 System.out.println(" ===  ===========   ===========    =====    ========   ============");
+        
+     }
+      void bill(String s)
+      {
+    	  
+    	  int sno=1;
+    	  for( int n=0; code1[n] !=0; n++)
+    	  {
+    	     System.out.print("  "+sno);
+    	     ++sno;
+    	     System.out.print("       "+code1[n]+"     ");// product code
+         	 this.productname(code1[n]);
+        	 System.out.print("     "+ this.price(code1[n],n));//price of the item
+    	     System.out.print("        "+ this.quantity1(n)+"        "); //Quantity of the Item
+    	     this.totalpriceofItems(n);//quantity of items * price of item
+    	     
+    	  }
+    	
+    	 
+      }
+      
+     int price(int a,int b)
+     {
+    	 
+    	 switch(a)
+   	  {
+    	  case 101:
+    		         price[b]= 100;
+    		         break;
+    	  case 102:
+    		           price[b]=150;
+		               break;
+    	  case 103:
+    		          price[b]= 200;
+		              break;
+    	  case 104:
+    		  		  price[b]  = 500;
+		              break;
+           case 201:
+        	   		 price[b]= 40;
+        	         break;
+           case 202:
+        	   		price[b]= 20;
+        	        break;
+           case 203:
+        	   		price[b]=  50;
+        	        break;
+           case 204:
+        	   		price[b]=  80;
+                     break;
+            case 301:
+            		  price[b]=  100;
+         	          break;
+            case 302:
+            		 price[b]= 150;
+         	         break;
+            case 303:
+            		 price[b]=120;
+         	         break;
+            case 401:
+            		  price[b]=50;
+         	          break;
+            case 402:
+            		 price[b]= 60;
+         	         break;
+            case 403:
+            	     price[b]=  60;
+         	         break;
+           
+     	}
+    	 return price[b];
+     }
+     void totalpriceofItems(int a)
+     {
+    	 int x = price[a]*quant[a];
+    	 tpofitems[a] = x;
+    	 
+    	 System.out.println("   "+tpofitems[a]); 
+     }
+     
+     void productname(int a)
+     {  
+           switch(a)
+        	  {
+         	  case 101:
+         		       System.out.print("    Mangoes  ");
+         		       break;
+         	  case 102:
+         		       System.out.print("    Apples   ");
+    		               break;
+         	  case 103:
+         		       System.out.print("    Grapes   ");
+    		               break;
+         	  case 104:
+         		       System.out.print("   Strawbery ");
+    		               break;
+                case 201:
+             	       System.out.print("    Potato    ");
+             	       break;
+                case 202:
+             	       System.out.print("    Tomoto    ");
+             	       break;
+                case 203:
+             	       System.out.print("    Cabbage   ");
+             	       break;
+                case 204:
+                	   System.out.print("  Bitterguard ");
+                       break;
+                 case 301:
+              	       System.out.print("   Lipstick  ");
+              	      break;
+                 case 302:
+              	       System.out.print("    Powder   ");
+              	       break;
+                 case 303:
+              	       System.out.print("   Eyelashes ");
+              	       break;
+                 case 401:
+              	       System.out.print("  Garam Masala");
+              	      break;
+                 case 402:
+              	       System.out.print("  ChickenMasala");
+              	       break;
+                 case 403:
+              	       System.out.print("  BiryaniMasala");
+              	       break;
+                
+          	}
+           return ;
+     }
+     void details()
+     {
+    	 System.out.print("Enter your Name    : ");
+    	 name = sc.next();
+    	 System.out.print("Enter your Address : ");
+    	 address = sc.next();
+    	 System.out.print("Enter your Contact no : ");
+    	 num = sc.next();
+    	 System.out.println();
+     }
+     void productcode()
+     {
+    	 System.out.print("Please choose your product code : ");
+          code1[krn] =sc.nextInt();
+          System.out.println();
+         System.out.println("Are you sure..!!, If yes type 1");
+         System.out.print("If you want to see main list please type 2 :");
+         int d= sc.nextInt();
+         String q1 = "==> How many Kgs do you need : ";
+         String q2 = "==> How many do you need : ";
+         String q3 = "==> How many Packets do you need : ";
+         switch(d)
+         {
+         case 1:
+        	    break;
+         case 2:
+        	    this.meth2();
+                break;
+           default :  
+        	        System.out.println("you have Entered invalid option");
+        	        System.out.println("Are you sure..!!, If yes type 1");
+        	        System.out.print("If you want to see main list please type 2 :");
+        	        int e =sc.nextInt();
+        	        switch(e)
+        	         {
+        	         case 1:
+        	        	    break;
+        	         case 2:
+        	        	    this.meth2();
+        	                break; 
+        	         }
+        	        
+           } 	    
+        switch(this.a) 
+        {	 
+        case 1:
+        	  
+          switch(code1[krn])
+       	  {
+        	  case 101:
+        		       System.out.println("Mangoes "+q1);
+        		       break;
+        	  case 102:
+        		       System.out.println("Apples "+q1);
+   		               break;
+        	  case 103:
+        		       System.out.println("Grapes "+q1);
+   		               break;
+        	  case 104:
+        		       System.out.println("Strawbery "+q1);
+   		               break;
+   		       default : 
+   		    	   System.out.println();
+   		    	   System.out.println("you have entered invalid product code");
+   		    	   this.productcode();
+   		    	   break;
+           }
+                   break;
+        case 2:
+           switch(code1[krn])
+        	{
+               case 201:
+            	      System.out.println("Potato "+q1);
+            	      break;
+               case 202:
+            	      System.out.println("Tomoto "+q1);
+            	      break;
+               case 203:
+            	      System.out.println("Cabbage "+q1);
+            	      break;
+               case 204:System.out.println("Bitterguard "+q1);
+                      break;
+               default : 
+            	   System.out.println();
+   		    	   System.out.println("you have entered invalid product code");
+        	       this.productcode();
+        	       break;
+        	}     
+                   break;
+        case 3:
+        	 switch(code1[krn])
+         	{
+                case 301:
+             	      System.out.println("Lipstick "+q2);
+             	      break;
+                case 302:
+             	      System.out.println("Powder "+q2);
+             	      break;
+                case 303:
+             	      System.out.println("Eyelashes "+q2);
+             	      break;
+                default : 
+                	   System.out.println();
+    		    	   System.out.println("you have entered invalid product code");
+         	           this.productcode();
+         	           break;
+         	}
+        	           break;
+        case 4:
+        	 switch(code1[krn])
+         	{
+                case 401:
+             	      System.out.println("Garam Masala "+q3);
+             	      break;
+                case 402:
+             	      System.out.println("Chicken Masala "+q3);
+             	      break;
+                case 403:
+             	      System.out.println("Biryani Masala "+q3);
+             	      break;
+                default : 
+                	   System.out.println();
+    		    	   System.out.println("you have entered invalid product code");
+                       this.productcode();
+                       break;       
+         	}
+        	        break;
+        	default :  
+        		     System.out.println();
+        		     System.out.println("you have entered inavlid option");
+        		     this.productcode();
+        		     break;
+        	
+          } 
+                         
+      }
+     
+     void items()
+     {
+    	 System.out.println();
+    	 System.out.println("These are your list of Items :");
+    	 System.out.println();
+    	 System.out.println("******************************************");
+    	 System.out.println("Option     ITEMS ");
+    	 System.out.println("-----------------");
+    	 System.out.println("  1       Fruits");
+    	 System.out.println("  2       Vegetables");
+    	 System.out.println("  3       Cosmetics");
+    	 System.out.println("  4       Masala powders");
+    	 System.out.println("  5       Exit");
+    	 System.out.println("******************************************");
+     }
+      void option(int a)
+      {
+    	  System.out.println();
+    	   System.out.println("code   ITEM                 Price");
+         switch(a)
+         {
+         case 1:
+        	     System.out.println("----------------------------------------");
+        	     System.out.println("101  Mangoes-------->1kg--->Rs.100");
+        	     System.out.println("102  Apples--------->1kg--->Rs.150");
+        	     System.out.println("103  Grapes--------->1kg--->Rs.200");
+        	     System.out.println("104  Strawberry----->1kg--->Rs.500");
+        	     System.out.println("----------------------------------------");
+        	     break;
+         case 2:
+        	    System.out.println("----------------------------------------");
+        	    System.out.println("201  Potato-------->1kg---->Rs.40");
+        	    System.out.println("202 Tomoto-------->1kg---->Rs.20");
+        	    System.out.println("203 Cabbage------->1kg---->Rs.50");
+        	    System.out.println("204 Bitterguard--->1kg---->Rs.80");
+        	    System.out.println("----------------------------------------");
+                break;
+         case 3:
+        	 System.out.println("----------------------------------------");
+        	    System.out.println("301 Lipstick---> Rs.100");
+                System.out.println("302 Powder-----> Rs.150");
+                System.out.println("303 Eyelashes--> Rs.120");
+                System.out.println("----------------------------------------");
+                break;
+         case 4:
+        	 System.out.println("----------------------------------------");
+        	    System.out.println("401 Garam Masala----->1 packet--->Rs.50");
+        	    System.out.println("402 Chicken Masala--->1 packet--->Rs.60");
+        	    System.out.println("403 Biryani Masala--->1 packet--->Rs.60");
+        	    System.out.println("----------------------------------------");
+        	    break;
+        	    
+         default:
+        	     System.out.println("Invalid input");
+         }
+      }
+    
+     public static void main(String[] args) 
+    {
+    	 System.out.println("******************************************");
+    	 System.out.println("------------Welcome to KRN Mart-----------");
+    	 System.out.println("******************************************");
+    	  new Project().meth1();
+          System.out.println("------------Thank you for Shopping-----------");
+		  System.out.println("****************Visit again******************");
+		  System.out.println("---------------------------------------------");
+		
+	}
+     
+  }
+
